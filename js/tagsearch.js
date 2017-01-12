@@ -24,7 +24,12 @@ function parseURLParams(url) {
 }
 
 function getTagSearchFromURL(url){
-	return parseURLParams(url).tagSearch[0];
+	var ts = parseURLParams(url).tagSearch;
+	if (ts && ts.length > 0) {
+		return ts[0];
+	} else {
+		return undefined;
+	}
 }
 
 function doesTagListMatchTag(tag, tagList){
@@ -82,7 +87,10 @@ function runTagSearch(){
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	var tsb = document.getElementById("tagSearchBar");
-	tsb.value = getTagSearchFromURL(window.location.search);
+	var tsu  = getTagSearchFromURL(window.location.search);
+	if (tsu) {
+		tsb.value = tsu;
+	}
 	tsb.addEventListener("change", runTagSearch);
 	tsb.addEventListener("keydown", runTagSearch);
 	tsb.addEventListener("input", runTagSearch);
