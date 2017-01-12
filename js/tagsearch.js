@@ -81,8 +81,11 @@ function runTagSearch(){
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	document.getElementById("tagSearchBar").value = getTagSearchFromURL(window.location.search);
+	var tsb = document.getElementById("tagSearchBar");
+	tsb.value = getTagSearchFromURL(window.location.search);
+	tsb.addEventListener("change", runTagSearch);
+	tsb.addEventListener("keydown", runTagSearch);
+	tsb.addEventListener("input", runTagSearch);
 	runTagSearch();
 });
-
 
