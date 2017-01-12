@@ -24,9 +24,9 @@ function parseURLParams(url) {
 }
 
 function getTagSearchFromURL(url){
-	var ts = parseURLParams(url).tagSearch;
-	if (ts && ts.length > 0) {
-		return ts[0];
+	var urlp  = parseURLParams(url);
+	if (urlp && urlp.tagSearch && urlp.tagSearch.length > 0) {
+		return urlp.tagSearch[0];
 	} else {
 		return undefined;
 	}
